@@ -15,10 +15,14 @@
     "sanity"
   ],
   "dependencies": {
+    "@portabletext/react": "^6.0.2",
     "@sanity/vision": "^5.2.0",
     "react": "^19.1",
     "react-dom": "^19.1",
+    "react-markdown": "^10.1.0",
+    "remark-gfm": "^4.0.1",
     "sanity": "^5.2.0",
+    "sanity-plugin-markdown": "^8.0.4",
     "styled-components": "^6.1.18"
   },
   "devDependencies": {
