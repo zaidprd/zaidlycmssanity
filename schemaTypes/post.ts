@@ -44,7 +44,7 @@ export default defineType({
     
     defineField({
       name: 'visualContent',
-      title: 'Isi Artikel Lengkap',
+      title: 'Article Content',
       type: 'array',
       components: {
         input: RichTextPreview
@@ -69,11 +69,43 @@ export default defineType({
         {
           name: 'affiliateButton',
           type: 'object',
-          title: '🛒 Tombol Affiliate',
+          title: '🛒 Affiliate Button',
           fields: [
-            { name: 'url', type: 'url' },
-            { name: 'label', type: 'string', initialValue: 'Check Price' }
-          ]
+            defineField({
+              name: 'storeId',
+              title: 'Select Store/Brand',
+              type: 'string',
+              description: 'Determines the logo shown above the button.',
+              options: {
+                list: [
+                  { title: 'Amazon', value: 'amazon' },
+                  { title: 'AliExpress', value: 'aliexpress' },
+                  { title: 'Default', value: 'default' },
+                ],
+                layout: 'radio'
+              },
+              initialValue: 'amazon'
+            }),
+            defineField({ name: 'url', title: 'Affiliate URL', type: 'url' }),
+            defineField({ 
+              name: 'label', 
+              title: 'Button Label', 
+              type: 'string', 
+              initialValue: 'Check Price' 
+            })
+          ],
+          preview: {
+            select: {
+              title: 'label',
+              subtitle: 'storeId'
+            },
+            prepare({ title, subtitle }) {
+              return {
+                title: title || 'Check Price',
+                subtitle: subtitle ? subtitle.toUpperCase() : 'AMAZON'
+              }
+            }
+          }
         }
       ]
     }),
